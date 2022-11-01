@@ -11,8 +11,6 @@ services:
       API_SERVER_ADDR: ":3000"
     ports:
       - "3000:3000"
-    links:
-      - db
 
   redis:
     image: redis:5

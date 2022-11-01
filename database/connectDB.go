@@ -10,9 +10,10 @@ import (
 var DB *gorm.DB
 
 func ConnectDatabase() {
-	dsn := os.Getenv("DB")
+	dns := os.Getenv("DB")
 
-	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
+	fmt.Println("DNS = ", dns)
+	db, err := gorm.Open(mysql.Open(dns), &gorm.Config{})
 	if err != nil {
 		panic("failed to connect database")
 	}

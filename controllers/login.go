@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"fmt"
 	"gin-gonic/database"
 	"gin-gonic/model"
 	"github.com/gin-gonic/gin"
@@ -40,6 +41,8 @@ func Register(c *gin.Context) {
 }
 
 func Login(c *gin.Context) {
+	//signingKey := []byte(os.Getenv("SECRET"))
+
 	var FormData struct {
 		Email    string
 		Password string
@@ -64,6 +67,7 @@ func Login(c *gin.Context) {
 		"nbf": time.Now().Add(time.Hour * 24 * 30).Unix(),
 	})
 	tokenString, err := token.SignedString([]byte(os.Getenv("SECRET")))
+	fmt.Println("============================", tokenString)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Error create token"})
 	}

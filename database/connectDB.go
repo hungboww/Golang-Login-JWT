@@ -17,6 +17,11 @@ func ConnectDatabase() {
 	if err != nil {
 		panic("failed to connect database")
 	}
+	defer func() {
+		if r := recover(); r != nil {
+			fmt.Println(r)
+		}
+	}()
 	fmt.Println("success")
 
 	DB = db
